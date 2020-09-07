@@ -1,0 +1,21 @@
+# JAVA 8 LTS
+JDK8_DOWN_URL=https://cdn.azul.com/zulu/bin
+JDK8_SRC=zulu8.48.0.53-ca-jdk8.0.265-linux_musl_x64.tar.gz
+JDK8_URL="$(JDK8_DOWN_URL)/$(JDK8_SRC)"
+
+# 11 GA (build 11+28)
+# https://jdk.java.net/archive/
+JDK11_DOWN_URL=https://download.java.net/java/ga/jdk11
+JDK11_SRC=openjdk-11_linux-x64_bin.tar.gz
+JDK11_URL="$(JDK11_DOWN_URL)/$(JDK11_SRC)"
+
+JDK12_DOWN_URL=https://download.java.net/java/GA/jdk12/33/GPL
+JDK12_SRC=openjdk-12_linux-x64_bin.tar.gz
+JDK12_URL="$(JDK12_DOWN_URL)/$(JDK12_SRC)"
+# https://download.java.net/java/GA/jdk12/33/GPL/openjdk-12_linux-x64_bin.tar.gz
+#
+
+JAVA_VERS+=JDK8
+JAVA_VERS+=JDK11
+JAVA_VERS+=JDK12
+#

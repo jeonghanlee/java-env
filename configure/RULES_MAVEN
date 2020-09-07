@@ -1,0 +1,17 @@
+
+CONF_MAVEN:=
+$(call confrules_BUILDER,MAVEN,CONF_MAVEN)
+
+.PHONY: mvn.install mvn363 mvn.conf
+
+mvn.conf: $(CONF_MAVEN)
+
+mvn.install: mvn363 mvn.conf
+
+mvn363: _get.MAVEN363 _uninstall.MAVEN363 _install.MAVEN363
+
+## Quick and dirty, we should re-define the following rules in rule_BUILDER
+
+.PHONY: mvn.uninstall
+
+mvn.uninstall: _uninstall.MAVEN363

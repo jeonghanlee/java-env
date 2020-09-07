@@ -1,40 +1,22 @@
 
 
-.PHONY: install uninstall src_install
+.PHONY:
 
-install: src_install sd_install sd_enable
+install: jdk.install ant.install mvn.install
 
-src_install: src_version src_preinst
-	$(if $(wildcard $(INSTALL_LOCATION)), $(QUIET)$(SUDO) mv $(INSTALL_LOCATION) $(INSTALL_LOCATION)_backup_$$(date +%Y%m%d-%H%M%S))
-	$(QUIET)$(SUDO) install -d $(INSTALL_LOCATION)
-	$(QUIET)$(SUDO) $(INSTALL_DATA) -b $(SITE_TEMPLATE_PATH)/.versions  $(INSTALL_LOCATION)/
-	$(QUIET)$(SUDO) cp -rp $(SRC_PATH)/appserver/distributions/payara/target/stage/payara5/*  $(INSTALL_LOCATION)/
-	$(QUIET)$(SUDO)	chown -R $(USERID):$(GROUPID) $(INSTALL_LOCATION)
+conf: jdk.conf ant.conf mvn.conf
 
-uninstall: sd_stop sd_disable sd_clean src_postrm
-	$(QUIET)echo "Removing $(INSTALL_LOCATION)..."
-	$(QUIET)$(SUDO) rm -rf $(INSTALL_LOCATION)/
+uninstall: jdk.uninstall ant.uninstall mvn.uninstall
+	$(SUDO) rm -rf $(INSTALL_LOCATION)
 
+_get.%:
+	$(call wget_func,$(patsubst _get.%,%,$(@)))
 
-.PHONY: src_version src_preinst src_postrm clean
+_install.%:
+	$(call install_func,$(patsubst _install.%,%,$(@)))
 
-src_preinst:
-	$(QUIET)$(SUDO) bash $(SITE_TEMPLATE_PATH)/usergroup.postinst "configure" "$(USERID)" "$(GROUPID)"
+_uninstall.%:
+	$(SUDO) $(call uninstall_func,$(patsubst _uninstall.%,%,$(@)))
 
-src_postrm: 
-	$(QUIET)$(SUDO) bash $(SITE_TEMPLATE_PATH)/usergroup.postrm "purge" "$(USERID)"
-
-src_version: FORCE
-	$(QUIET)echo "Timestamps : $$(date +%Y%m%d-%H%M%S)/YYYYMMDD-HHMMSS" > $(SITE_TEMPLATE_PATH)/.versions
-	$(QUIET)echo "- SRC REMOTE URL   : $(SRC_GITURL)"  >> $(SITE_TEMPLATE_PATH)/.versions
-	$(QUIET)echo "- SRC SITE VERSION : $(SRC_TAG)"     >> $(SITE_TEMPLATE_PATH)/.versions
-	$(QUIET)echo -n "- SRC GIT  VERSION : "            >> $(SITE_TEMPLATE_PATH)/.versions
-	$(QUIET)cd $(SRC_PATH) && git describe --tags      >> $(SITE_TEMPLATE_PATH)/.versions
-
-clean:
-	rm -rf $(SITE_TEMPLATE_PATH)/.versions
-
-FORCE:
-
-#reinstall: conf build install
-#restart: uninstall reinstall cf_start cf_status
+_clean.%:
+	rm -rf $(patsubst clean.%,%,$(@)).tgz

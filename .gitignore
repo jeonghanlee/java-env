@@ -47,3 +47,5 @@ auto_positions.sav*
 .versions
 *-src
 env-template/
+*.tgz
+*.local

@@ -1,0 +1,7 @@
+#
+ANT_DOWN_URL:=https://downloads.apache.org/ant/binaries
+ANT_1_10_8_SRC=apache-ant-1.10.8-bin.tar.gz
+ANT1108_URL="$(ANT_DOWN_URL)/$(ANT_1_10_8_SRC)"
+#
+
+ANT_VERS+=ANT1108

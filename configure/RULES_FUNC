@@ -49,6 +49,46 @@ ifdef DEBUG_SHELL
   SHELL = /bin/sh -x
 endif
 
+# 1 : user-defined filename without suffix
+define wget_func
+	wget -O $(strip $(1)).tgz -cq  $($(strip $(1))_URL)
+endef
+
+
+# 1 : user-defined filename
+define install_func
+$(SUDO) $(INSTALL) -d $(INSTALL_LOCATION)/$(strip $(1))
+$(SUDO) tar -C "$(INSTALL_LOCATION)/$(strip $(1))" --strip-components=1 -xzf $(strip $(1)).tgz
+endef
+
+# 1 : user-defined filename
+define uninstall_func
+rm -rf $(INSTALL_LOCATION)/$(strip $(1))
+endef
+
+
+# 1 : MAVEN, JAVA, or ANT
+# 2 : a version
+# 3 : Return 
+define a_conf_BUILDER
+conf.$(2):
+	@echo "## $(1) Environment, Please pick one of them."
+	@echo "$(1)_HOME:=$$(INSTALL_LOCATION)/$(2)"
+	@echo "$(1)_PATH:=$$(INSTALL_LOCATION)/$(2)/bin"
+	@echo "##"
+
+$(3)+=conf.$(2)
+
+endef
+
+
+# 1 : MAVEN, JAVA, or ANT
+# 2 : RETURN
+define confrules_BUILDER
+$(foreach dir, $($(1)_VERS), $(eval $(call a_conf_BUILDER,$(1),$(dir),$(2))))
+endef
+
+
 
 ### Exclude the following variables to display
 VARS_EXCLUDES+=make_p0_patch

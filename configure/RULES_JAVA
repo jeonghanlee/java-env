@@ -1,0 +1,21 @@
+
+CONF_JAVA:=
+$(call confrules_BUILDER,JAVA,CONF_JAVA)
+
+.PNONY: jdk.install jdk8 jdk11 jdk12 jdk.conf
+
+jdk.conf: $(CONF_JAVA)
+
+jdk.install: jdk8 jdk11 jdk12 jdk.conf
+
+jdk8: _get.JDK8 _uninstall.JDK8 _install.JDK8
+
+jdk11: _get.JDK11 _uninstall.JDK11 _install.JDK11
+
+jdk12: _get.JDK12 _uninstall.JDK12 _install.JDK12
+
+
+## Quick and dirty, we should re-define the following rules in rule_BUILDER
+.PNONY: jdk.uninstall
+
+jdk.uninstall: _uninstall.JDK8 _uninstall.JDK11 _uninstall.JDK12

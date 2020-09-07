@@ -1,0 +1,17 @@
+
+CONF_ANT:=
+$(call confrules_BUILDER,ANT,CONF_ANT)
+
+.PHONY : ant.install ant1108 ant.conf
+
+ant.conf: $(CONF_ANT)
+
+ant.install: ant1108 ant.conf
+
+ant1108: _get.ANT1108 _uninstall.ANT1108 _install.ANT1108
+
+
+## Quick and dirty, we should re-define the following rules in rule_BUILDER
+
+.PHONY: ant.uninstall
+ant.uninstall: _uninstall.ANT1108 
