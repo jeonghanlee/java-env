@@ -7,7 +7,7 @@
 
 * JDK 8 : zulu8
 
-* JDK 11 : opendjdk11
+* JDK 11 : openjdk11
 
 * JDK 12 : openjdk12
 
