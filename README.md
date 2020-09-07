@@ -1,4 +1,5 @@
 # JAVA, Maven, and Ant Configuration Environment
+![Linter Run](https://github.com/jeonghanlee/java-env/workflows/Linter%20Run/badge.svg)
 
 ## Java Packages
 
