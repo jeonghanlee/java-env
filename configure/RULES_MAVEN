@@ -12,6 +12,8 @@ mvn363: _get.MAVEN363 _uninstall.MAVEN363 _install.MAVEN363
 
 ## Quick and dirty, we should re-define the following rules in rule_BUILDER
 
-.PHONY: mvn.uninstall
+.PHONY: mvn.uninstall mvn.clean
+
+mvn.clean: _clean.MAVEN363
 
 mvn.uninstall: _uninstall.MAVEN363

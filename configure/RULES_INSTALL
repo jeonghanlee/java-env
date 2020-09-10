@@ -9,6 +9,8 @@ conf: jdk.conf ant.conf mvn.conf
 uninstall: jdk.uninstall ant.uninstall mvn.uninstall
 	$(SUDO) rm -rf $(INSTALL_LOCATION)
 
+clean: jdk.clean ant.clean mvn.clean
+
 _get.%:
 	$(call wget_func,$(patsubst _get.%,%,$(@)))
 
@@ -19,4 +21,4 @@ _uninstall.%:
 	$(SUDO) $(call uninstall_func,$(patsubst _uninstall.%,%,$(@)))
 
 _clean.%:
-	rm -rf $(patsubst clean.%,%,$(@)).tgz
+	rm -rf $(patsubst _clean.%,%,$(@)).tgz

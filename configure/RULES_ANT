@@ -13,5 +13,7 @@ ant1108: _get.ANT1108 _uninstall.ANT1108 _install.ANT1108
 
 ## Quick and dirty, we should re-define the following rules in rule_BUILDER
 
-.PHONY: ant.uninstall
+.PHONY: ant.uninstall ant.clean
+
+ant.clean: _clean.ANT1108
 ant.uninstall: _uninstall.ANT1108 
