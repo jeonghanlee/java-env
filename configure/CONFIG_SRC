@@ -22,7 +22,11 @@ SUDO_CMD:=$(shell which sudo)
 ifeq "$(SUDO_INFO)" "1"
 SUDO = $(SUDO_CMD)
 else
+ifeq ($(UNAME_S),Darwin)
+SUDO = $(SUDO_CMD)
+else
 SUDO :=
+endif
 endif
 
 #

@@ -4,22 +4,43 @@
 
 ## Java Packages
 
+This is the JAVA packages (JDK, ANT, MAVEN) configuration environment. It supports Linux, and Darwin x86 and arm64. And it configures the predefined JAVA packages.
+
+## Requirements
+
+`wget` is required to download the java package.
+
+* Debian
+
+```bash
+sudo apt install wget
+```
+
+* Fedora
+
+```bash
+sudo dnf install wget
+```
+
+* Darwin
+
+```bash
+sudo port install wget
+```
+
 ### JAVA
 
-* JDK 8 : <https://github.com/corretto/corretto-8>
-
-* JDK 11 : openjdk11
-
-* JDK 12 : openjdk12
+* JDK 8 : <https://github.com/corretto/corretto-8> (Linux)
+* JDK 11 : openjdk11 (Linux), azul jdk11 (Darwin x86, Darwin arm64)
+* JDK 15 : openjdk15 (Linux), azul jdk15 (Darwin x86, Darwin arm64)
 
 ### MAVEN
 
-* Maven 3.6.3 : latest
+* Maven 3.6.3
 
 ### ANT
 
-* Ant 1.10.8 :
-* Ant 1.10.9 : latest
+* Ant 1.10.9
 
 ## Rules
 
@@ -30,22 +51,15 @@ make install
 ```
 
 ```bash
-$ make conf
-## JAVA Environment, Please pick one of them.
-JAVA_HOME:=/opt/java-env/JDK8
-JAVA_PATH:=/opt/java-env/JDK8/bin
-##
+$  make conf
 ## JAVA Environment, Please pick one of them.
 JAVA_HOME:=/opt/java-env/JDK11
 JAVA_PATH:=/opt/java-env/JDK11/bin
 ##
 ## JAVA Environment, Please pick one of them.
-JAVA_HOME:=/opt/java-env/JDK12
-JAVA_PATH:=/opt/java-env/JDK12/bin
+JAVA_HOME:=/opt/java-env/JDK15
+JAVA_PATH:=/opt/java-env/JDK15/bin
 ##
-## ANT Environment, Please pick one of them.
-ANT_HOME:=/opt/java-env/ANT1108
-ANT_PATH:=/opt/java-env/ANT1108/bin
 ## ANT Environment, Please pick one of them.
 ANT_HOME:=/opt/java-env/ANT1109
 ANT_PATH:=/opt/java-env/ANT1109/bin
@@ -70,20 +84,9 @@ make install
 ```bash
 java-env (master)$ make conf
 ## JAVA Environment, Please pick one of them.
-JAVA_HOME:=/home/jhlee/java-env/JDK8
-JAVA_PATH:=/home/jhlee/java-env/JDK8/bin
-##
-## JAVA Environment, Please pick one of them.
 JAVA_HOME:=/home/jhlee/java-env/JDK11
 JAVA_PATH:=/home/jhlee/java-env/JDK11/bin
 ##
-## JAVA Environment, Please pick one of them.
-JAVA_HOME:=/home/jhlee/java-env/JDK12
-JAVA_PATH:=/home/jhlee/java-env/JDK12/bin
-##
-## ANT Environment, Please pick one of them.
-ANT_HOME:=/home/jhlee/java-env/ANT1108
-ANT_PATH:=/home/jhlee/java-env/ANT1108/bin
 ## ANT Environment, Please pick one of them.
 ANT_HOME:=/home/jhlee/java-env/ANT1109
 ANT_PATH:=/home/jhlee/java-env/ANT1109/bin
