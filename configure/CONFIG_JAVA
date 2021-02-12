@@ -1,5 +1,7 @@
 ## JAVA 8 LTS
 ## We use corretto instead of azul java 
+ifeq ($(UNAME_S),Linux)
+
 JDK8_DOWN_URL=https://corretto.aws/downloads/resources/8.262.10.1
 JDK8_SRC=amazon-corretto-8.262.10.1-linux-x64.tar.gz
 JDK8_URL="$(JDK8_DOWN_URL)/$(JDK8_SRC)"
@@ -11,13 +13,38 @@ JDK11_SRC=openjdk-11_linux-x64_bin.tar.gz
 JDK11_URL="$(JDK11_DOWN_URL)/$(JDK11_SRC)"
 
 ##
-JDK12_DOWN_URL=https://download.java.net/java/GA/jdk12/33/GPL
-JDK12_SRC=openjdk-12_linux-x64_bin.tar.gz
-JDK12_URL="$(JDK12_DOWN_URL)/$(JDK12_SRC)"
+#JDK12_DOWN_URL=https://download.java.net/java/GA/jdk12/33/GPL
+#JDK12_SRC=openjdk-12_linux-x64_bin.tar.gz
+#JDK12_URL="$(JDK12_DOWN_URL)/$(JDK12_SRC)"
 # https://download.java.net/java/GA/jdk12/33/GPL/openjdk-12_linux-x64_bin.tar.gz
 #
+JDK15_DOWN_URL=https://download.java.net/java/GA/jdk15.0.2/0d1cfde4252546c6931946de8db48ee2/7/GPL
+JDK15_SRC=openjdk-15.0.2_linux-x64_bin.tar.gz
+JDK15_URL=JDK15_URL="$(JDK15_DOWN_URL)/$(JDK15_SRC)"
 
 JAVA_VERS+=JDK8
 JAVA_VERS+=JDK11
-JAVA_VERS+=JDK12
+JAVA_VERS+=JDK15
+#JAVA_VERS+=JDK12
+endif
+
+# https://cdn.azul.com/zulu/bin/zulu15.29.15-ca-jdk15.0.2-macosx_x64.tar.gz
+ifeq ($(UNAME_S),Darwin)
+
+JDK11_DOWN_URL=https://cdn.azul.com/zulu/bin
+JDK15_DOWN_URL=$(JDK11_DOWN_URL)
+
+ifeq ($(UNAME_M),arm64)
+JDK11_SRC=zulu11.45.27-ca-jdk11.0.10-macosx_aarch64.tar.gz
+JDK15_SRC=zulu15.29.15-ca-jdk15.0.2-macosx_aarch64.tar.gz
+else
+JDK11_SRC=zulu11.45.27-ca-jdk11.0.10-macosx_x64.tar.gz
+JDK15_SRC=zulu15.29.15-ca-jdk15.0.2-macosx_x64.tar.gz
+endif
+JDK11_URL="$(JDK11_DOWN_URL)/$(JDK11_SRC)"
+JDK15_URL="$(JDK15_DOWN_URL)/$(JDK15_SRC)"
+JAVA_VERS+=JDK11
+JAVA_VERS+=JDK15
+endif
+
 #

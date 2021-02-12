@@ -6,9 +6,9 @@ $(call confrules_BUILDER,ANT,CONF_ANT)
 
 ant.conf: $(CONF_ANT)
 
-ant.install: ant1108 ant1109 ant.conf
+ant.install: ant1109 ant.conf
 
-ant1108: _get.ANT1108 _uninstall.ANT1108 _install.ANT1108
+# ant1108: _get.ANT1108 _uninstall.ANT1108 _install.ANT1108
 
 ant1109: _get.ANT1109 _uninstall.ANT1109 _install.ANT1109
 
@@ -16,5 +16,8 @@ ant1109: _get.ANT1109 _uninstall.ANT1109 _install.ANT1109
 
 .PHONY: ant.uninstall ant.clean
 
-ant.clean: _clean.ANT1108 _clean.ANT1109
-ant.uninstall: _uninstall.ANT1108 _uninstall.ANT1109
+#ant.clean: _clean.ANT1108 _clean.ANT1109
+#ant.uninstall: _uninstall.ANT1108 _uninstall.ANT1109
+
+ant.clean: _clean.ANT1109
+ant.uninstall: _uninstall.ANT1109
