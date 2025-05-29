@@ -1,6 +1,6 @@
 #
-MAVEN_DOWN_URL:=https://downloads.apache.org/maven
-MAVEN_3_6_3_SRC=apache-maven-3.6.3-bin.tar.gz
-MAVEN363_URL="$(MAVEN_DOWN_URL)/maven-3/3.6.3/binaries/$(MAVEN_3_6_3_SRC)"
+MAVEN_VER=3.9.9
+MAVEN_DN=https://downloads.apache.org/maven
+MAVEN_GZ=apache-maven-$(MAVEN_VER)-bin.tar.gz
+MAVEN_URL="$(MAVEN_DN)/maven-3/$(MAVEN_VER)/binaries/$(MAVEN_GZ)"
 #
-MAVEN_VERS+=MAVEN363

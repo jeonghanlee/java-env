@@ -6,5 +6,4 @@ UNAME_M:=$(shell uname -m)
 include $(TOP)/configure/CONFIG_SITE
 include $(TOP)/configure/CONFIG_JAVA
 include $(TOP)/configure/CONFIG_MAVEN
-include $(TOP)/configure/CONFIG_ANT
 include $(TOP)/configure/CONFIG_SRC

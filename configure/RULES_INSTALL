@@ -2,14 +2,14 @@
 
 .PHONY:
 
-install: jdk.install ant.install mvn.install
+install: jdk.install mvn.install
 
-conf: jdk.conf ant.conf mvn.conf
+conf: jdk.conf mvn.conf
 
-uninstall: jdk.uninstall ant.uninstall mvn.uninstall
+uninstall: jdk.uninstall mvn.uninstall
 	$(SUDO) rm -rf $(INSTALL_LOCATION)
 
-clean: jdk.clean ant.clean mvn.clean
+clean: jdk.clean mvn.clean
 
 _get.%:
 	$(call wget_func,$(patsubst _get.%,%,$(@)))

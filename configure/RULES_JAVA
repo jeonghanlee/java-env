@@ -1,35 +1,15 @@
 
-CONF_JAVA:=
-$(call confrules_BUILDER,JAVA,CONF_JAVA)
 
-.PNONY: jdk.install jdk8 jdk11 jdk15 jdk.conf
+.PNONY: jdk.install
 
-jdk.conf: $(CONF_JAVA)
-
-jdk8: _get.JDK8 _uninstall.JDK8 _install.JDK8
-
-jdk11: _get.JDK11 _uninstall.JDK11 _install.JDK11
-
-jdk15: _get.JDK15 _uninstall.JDK15 _install.JDK15
+jdk: _get.JDK _uninstall.JDK _install.JDK
 
 ## Quick and dirty, we should re-define the following rules in rule_BUILDER
 .PNONY: jdk.uninstall
 
-ifeq ($(UNAME_S),Linux)
-jdk.install: jdk8 jdk11 jdk15 jdk.conf
+jdk.install: jdk
 
-jdk.clean: _clean.JDK8 _clean.JDK11 _clean.JDK15
+jdk.clean: _clean.JDK
 
-jdk.uninstall: _uninstall.JDK8 _uninstall.JDK11 _uninstall.JDK12
-
-endif
-
-ifeq ($(UNAME_S),Darwin)
-jdk.install: jdk11 jdk15 jdk.conf
-
-jdk.clean: _clean.JDK11 _clean.JDK15
-
-jdk.uninstall: _uninstall.JDK11 _uninstall.JDK12
-
-endif
+jdk.uninstall: _uninstall.JDK
 

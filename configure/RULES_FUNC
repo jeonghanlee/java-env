@@ -31,7 +31,7 @@ endef
 
 # it may be useful for git with older than 1.8.5, which doesn't have -C option.
 define gitclone2
-	git clone  $(1) $(2) 
+	git clone  $(1) $(2)
 	cd $(2) && git checkout $(3)
 endef
 
@@ -64,28 +64,6 @@ endef
 # 1 : user-defined filename
 define uninstall_func
 rm -rf $(INSTALL_LOCATION)/$(strip $(1))
-endef
-
-
-# 1 : MAVEN, JAVA, or ANT
-# 2 : a version
-# 3 : Return 
-define a_conf_BUILDER
-conf.$(2):
-	@echo "## $(1) Environment, Please pick one of them."
-	@echo "$(1)_HOME:=$$(INSTALL_LOCATION)/$(2)"
-	@echo "$(1)_PATH:=$$(INSTALL_LOCATION)/$(2)/bin"
-	@echo "##"
-
-$(3)+=conf.$(2)
-
-endef
-
-
-# 1 : MAVEN, JAVA, or ANT
-# 2 : RETURN
-define confrules_BUILDER
-$(foreach dir, $($(1)_VERS), $(eval $(call a_conf_BUILDER,$(1),$(dir),$(2))))
 endef
 
 
