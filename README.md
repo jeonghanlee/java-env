@@ -4,7 +4,7 @@
 ## JAVA and Maven
 
 * OpenJDK 21
-* Maven 3.9.9
+* Maven 3.9.10
 
 ## Default Installation Location `/opt/java-env`
 
